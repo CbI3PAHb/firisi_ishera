@@ -26,3 +26,13 @@ to be commited ->
 ```
 git add .
 ```
+
+Commit
+```
+git commit -m "This commit includes requirement.txt and readme file"
+```
+
+Push
+```
+git push origin main
+```
