@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, Form, Depends
 from typing import Optional
 from pydantic import BaseModel
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -22,15 +22,16 @@ templates = Jinja2Templates(directory="templates/")
 type_of_iris = {0: 'Iris-setosa', 1: 'Iris-versicolor', 2: 'Iris-virginica'}
 
 
-@app.get("/")
-def root():
-    return {"message": "Hello!"}
+
+@app.get("/", response_class=HTMLResponse)
+def redirect_fastapi(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
 
 
 @app.get("/new_form", response_class=HTMLResponse)
 def post_form(request: Request):
     result = "Type a number"
-    return templates.TemplateResponse("new_form.html", {"request": request, 'result': result})
+    return templates.TemplateResponse("test_item.html", {"request": request, 'result': result})
 
 
 @app.post("/new_form", response_class=HTMLResponse)
@@ -58,7 +59,56 @@ def post_form(request: Request, form_data : MyForm = Depends(MyForm.as_form)):
     res2 = np.round(res2, 4)
 
     result = f"Model dumayet, 4to etot iris - {type_of_iris[res1]}, s vero9tnost'u {res2}"
-    return templates.TemplateResponse("new_form.html", {"request": request, 'result': result})
+    return templates.TemplateResponse("test_item.html", {"request": request, 'result': result})
+
+
+# class CommonQueryParams:
+#     def __init__(self, 
+#                  sepal_length : float | None = None,
+#                  sepal_width  : float | None = None,
+#                  petal_length : float | None = None,
+#                  petal_width  : float | None = None):
+#         self.sepal_length = sepal_length
+#         self.sepal_width  = sepal_width 
+#         self.petal_length = petal_length 
+#         self.petal_width  = petal_width 
+
+
+# @app.get("/items/", response_class=HTMLResponse)
+# def read_items(request: Request):
+
+#     result = "Type a number"
+#     return templates.TemplateResponse("test_item.html", {"request": request, 'result': result})
+
+
+# @app.post("/items/", response_class=HTMLResponse)
+# def read_items(request: Request, form_data: CommonQueryParams = Depends(CommonQueryParams)):
+#     print(form_data)
+
+#     sepal_length = Form()
+#     sepal_width  = Form()
+#     petal_length = Form()
+#     petal_width  = Form()
+
+#     result = str(1)
+#     if petal_length:
+#         print(sepal_length, sepal_width, petal_length, petal_width)
+#         result = str(2)
+
+    
+
+#     return templates.TemplateResponse("test_item.html", {"request": request, 'result': result})
+
+#     result = "Type a number"
+#     return templates.TemplateResponse("new_form.html", {"request": request, 'result': result})
+
+#     response = {}
+#     if commons.q:
+#         response.update({"q": commons.q})
+#     items = fake_items_db[commons.skip : commons.skip + commons.limit]
+#     response.update({"items": items})
+#     return response
+
 
 
 # 

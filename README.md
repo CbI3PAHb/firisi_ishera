@@ -4,6 +4,8 @@
 
 1. [Github](https://github.com/)
 2. [VS Code](https://code.visualstudio.com/)
+3. [Fastapi](https://fastapi.tiangolo.com/)
+4. [Docker](https://www.docker.com/)
 
 Create a new environment
 

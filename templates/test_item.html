@@ -5,19 +5,14 @@
     <title>Sample Form</title>
 </head>
 <body>
+<h1>Iris Prediction</h1>
 <form method="post">
-    <label for="num1">1:</label>
-    <input type="number" name="num1" value=0/><br>
+    <input type="number" step=any id="sepal_length" name="sepal_length" placeholder="Sepal length" required/><br>
+    <input type="number" step=any id="sepal_width"  name="sepal_width"  placeholder="Sepal width"  required/><br>
+    <input type="number" step=any id="petal_length" name="petal_length" placeholder="Petal length" required/><br>
+    <input type="number" step=any id="petal_width"  name="petal_width"  placeholder="Petal width"  required/><br>
 
-    <label for="num2">2:</label>
-    <input type="number" name="num2" value=0/><br>
-
-    <label for="num3">3:</label>
-    <input type="number" name="num3" value=0/><br>
-
-    <label for="num4">4:</label>
-    <input type="number" name="num4" value=0/><br>
-    <input type="submit">
+    <button type="submit">Predict</button>
 </form>
 
 <p>Result: {{ result }}</p>

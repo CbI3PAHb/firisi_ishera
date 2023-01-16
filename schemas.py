@@ -1,10 +1,11 @@
 from fastapi import Form
+from typing import Optional
 from pydantic import BaseModel
 
 class MyForm(BaseModel):
     sepal_length : float
     sepal_width : float
-    petal_length : float
+    petal_length : float | None
     petal_width : float
 
     @classmethod
@@ -12,7 +13,7 @@ class MyForm(BaseModel):
         cls,
         sepal_length : float = Form(...),
         sepal_width : float = Form(...),
-        petal_length : float = Form(...),
+        petal_length : float | None = Form(...),
         petal_width : float = Form(...)
     ):
         return cls(    
