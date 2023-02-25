@@ -6,3 +6,4 @@ pandas
 scikit-learn
 Jinja2
 python-multipart
+sqlalchemy

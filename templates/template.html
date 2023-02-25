@@ -1,0 +1,65 @@
+<!-- //myapp/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python FastAPI Flower predictor</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+ 
+            <h2 class="text-center my-3 pb-3">Python FastAPI Flower predictor</h4>
+            <form class="row" action="/predict/add" method="post">
+              <div class="col-4">
+                <div class="form-outline">
+                    <input type="number" step=any id="sepal_length" name="sepal_length" placeholder="Sepal length" class="form-control" required/><br>
+                    <input type="number" step=any id="sepal_width"  name="sepal_width"  placeholder="Sepal width"  class="form-control" required/><br>
+                    <input type="number" step=any id="petal_length" name="petal_length" placeholder="Petal length" class="form-control" required/><br>
+                    <input type="number" step=any id="petal_width"  name="petal_width"  placeholder="Petal width"  class="form-control" required/><br>
+                </div>
+              </div>
+ 
+              <div class="col-6">
+                <button type="submit" class="btn btn-primary">Make predict</button>
+              </div>
+            </form>
+
+            
+ 
+            <table class="table mb-4">
+                <thead>
+                    <tr>
+                      <th scope="col">Input values</th>
+                      <th scope="col">Previous predict</th>
+                      <!-- <th scope="col">Status</th> -->
+                      <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for flower in flowers_list %}
+                    <tr>
+                      <th scope="row">{{flower.input }}</th>
+                      <td>{{ flower.output }}</td>
+
+                      <td>
+                        <a class="btn btn-danger ms-1" href="/delete/{{ flower.id }}">Delete</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html> 

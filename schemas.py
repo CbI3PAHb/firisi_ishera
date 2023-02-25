@@ -1,7 +1,7 @@
 from fastapi import Form
 from pydantic import BaseModel
 
-class MyForm(BaseModel):
+class Flower(BaseModel):
     sepal_length : float
     sepal_width : float
     petal_length : float
